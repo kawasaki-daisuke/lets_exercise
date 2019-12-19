@@ -1,0 +1,21 @@
+<%= render :partial => 'layouts/header' %>
+<h2>ユーザー一覧画面</h2>
+	<% @users.each do |f| %>
+			<p>画像</p>
+			<span><%= attachment_image_tag f, :profile_image, width:"100px" %></span>
+			<p>名前</p>
+			<%= link_to publics_user_path(f.id) do %>
+			<span><%= f.name %></span>
+			<% end %>
+
+			<p>
+		    <%= "id: #{f.id} email: #{f.email}" %>
+		    <% unless @user == current_user %>
+			    <% if current_user.following?(f) %>
+			        <%= link_to 'フォロー外す', unfollow_path(f.id), method: :post %>
+			    <% else %>
+			        <%= link_to 'フォローする', follow_path(f.id), method: :post %>
+			    <% end %>
+			<% end %>
+		    </p>
+	<% end %>

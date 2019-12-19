@@ -1,0 +1,5 @@
+<h1>コメント入力画面</h1>
+<%= form_for(@post,url:publics_post_path) do |f| %>
+<%= f.text_area :comment_content %>
+<%= f.submit "コメントする" %>
+<% end %>

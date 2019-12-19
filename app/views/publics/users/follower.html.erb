@@ -1,0 +1,5 @@
+<%= "#{@user.name}さんのフォロー" %>
+	<% @user.following_user.each do |user| %>
+		<%= attachment_image_tag user, :profile_image, width:"100px" %>
+		<%= link_to "#{user.name}", publics_user_path(user) %>
+	<% end %>

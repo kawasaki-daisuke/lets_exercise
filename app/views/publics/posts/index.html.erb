@@ -1,0 +1,15 @@
+<%= render :partial => 'layouts/header' %>
+
+<h1>投稿一覧</h1>
+<% @posts.each do |f| %>
+	<p>投稿日時</p>
+	<%= link_to  publics_user_post_path(user_id:@user.id, id:f.id) do %>
+	<span><%= f.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+	<% end %>
+	<p>画像</p>
+	<span><%= attachment_image_tag f, :post_image, width:"100px" %></span>
+	<p>トレーニング内容</p>
+	<span><%= f.post_content %></span>
+<% end %>
+
+

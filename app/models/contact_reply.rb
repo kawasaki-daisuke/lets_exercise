@@ -1,0 +1,2 @@
+class ContactReply < ApplicationRecord
+end

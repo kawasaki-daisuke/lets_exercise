@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LetsExercise</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/50e1df26d8.js" crossorigin="anonymous"></script>
+  </head>
+  <header id="header" class="">
+  <div class="header-top">
+  <nav class="nav navbar-nav navbar-left nav-position">
+  <span><%= link_to "Let's エクササイズ", root_path,  class:"nav-title" %></span>
+  </nav>
+  <nav class="nav-right">
+  <span><%= current_user.name %>さんがログインしています</span><br>
+  <ul>
+    <li class="navlist">
+      <%= link_to "マイページ", publics_user_path(current_user), class:"btn btn-default" %>
+    </li>
+    <li class="navlist">
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"btn btn-default" %>
+    </li>
+    <li class="navlist">
+      <%= link_to "検索", publics_users_search_path, class:"btn btn-default" %>
+    </li>
+  </ul>
+     <style>
+       .header-top{
+         height: 130px;
+       }
+     </style>
+  </header><!-- /header -->
+</html>

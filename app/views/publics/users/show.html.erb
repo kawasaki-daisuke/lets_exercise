@@ -1,0 +1,71 @@
+<%= render :partial => 'layouts/header' %>
+<% if user_signed_in? && current_user.id.to_s == params[:id] %>
+
+<h1>マイページ</h1>
+	
+
+	
+
+	<p>画像</p>
+	<span><%= attachment_image_tag @user, :profile_image, width:"100px" %></span>
+	<p>名前</p>
+	<span><%= @user.name %></span>
+	<p>身長</p>
+	<span><%= @user.tall %></span>
+	<p>体重</p>
+	<span><%= @user.weight %></span>
+
+	<p><%= "id: #{@user.id}" %></p>
+	<p><%= link_to "フォロー数: #{@user.follower.count}", follower_path %></p>
+	<p><%= link_to "フォロワー数: #{@user.followed.count}",followed_path %></p>
+	<% unless @user == current_user %>
+		<% if current_user.following?(@user) %>
+	    <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :post %>
+	  	<% else %>
+	    <%= link_to 'フォローする', follow_path(@user.id), method: :post %>
+	  	<% end %>
+	<% end %>
+
+	<%= link_to "編集", edit_publics_user_path(@user) %>
+
+	<%= link_to "投稿する", new_publics_user_post_path(@user) %>
+
+	<%= link_to "投稿一覧", publics_user_posts_path(@user) %>
+
+<% else %>
+
+	<h1>ユーザー詳細</h1>
+		<p>画像</p>
+		<span><%= attachment_image_tag @user, :profile_image, width:"100px" %></span>
+		<p>名前</p>
+		<span><%= @user.name %></span>
+		<p>身長</p>
+		<span><%= @user.tall %></span>
+		<p>体重</p>
+		<span><%= @user.weight %></span>
+
+	<p><%= "id: #{@user.id}" %></p>
+	<p><%= link_to "フォロー数: #{@user.follower.count}", follower_path %></p>
+	<p><%= link_to "フォロワー数: #{@user.followed.count}",followed_path %></p>
+	<% unless @user == current_user %>
+		<% if current_user.following?(@user) %>
+	    <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :post %>
+	  	<% else %>
+	    <%= link_to 'フォローする', follow_path(@user.id), method: :post %>
+	  	<% end %>
+	<% end %>
+	
+	<% unless @room.nil? %>
+		<%= form_for(@room, url: publics_rooms_path, action: :create) do |f| %>
+	      <%= fields_for @entry do |e| %>
+	        <%= e.hidden_field :user_id, :value=> @user.id %>
+	      <% end %>
+	      <%= f.submit "チャットを始める" %>
+	    <% end %>
+	<% else %>
+		<%= link_to "チャットを始める", publics_room_path(@roomId) %>
+	<% end %>
+
+	<%= link_to "投稿一覧", publics_user_posts_path(@user) %>
+
+<% end %>
