@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post 'publics/follow/:id' => 'publics/relationships#follow', as: 'follow' # フォローする
 	post 'publics/unfollow/:id' => 'publics/relationships#unfollow', as: 'unfollow' # フォロー外す
   
+  get 'publics/users/search' => 'publics/users#search'
   
   namespace :publics do
     resources :users do
@@ -28,5 +29,5 @@ Rails.application.routes.draw do
     
   end
 
-  get 'publics/users/search' => 'publics/users#search'
+  
 end

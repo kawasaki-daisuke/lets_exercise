@@ -1,6 +1,8 @@
 <%= render :partial => 'layouts/header' %>
 <h2>ユーザー一覧画面</h2>
+<ul class="bxslider">
 	<% @users.each do |f| %>
+		<li>
 			<p>画像</p>
 			<span><%= attachment_image_tag f, :profile_image, width:"100px" %></span>
 			<p>名前</p>
@@ -18,4 +20,6 @@
 			    <% end %>
 			<% end %>
 		    </p>
+		</li>
 	<% end %>
+</ul>
