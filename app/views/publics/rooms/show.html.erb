@@ -1,26 +1,43 @@
-<h1>DM</h1>
+<h1>チャットルーム</h1>
+<div class="container">
+  <div class="row row-md-10">
+    <div class="col col-lg-5">
+    </div>
+    <div class="col col-md-6">
+        <h4>参加者</h4>
+        <% @entries.each do |e| %>
+          <h5><strong><a href="/users/<%= e.user.id %>"><%= e.user.name %>さん</a></strong></h5>
+        <% end %>
 
-<h4>参加者</h4>
-<% @entries.each do |e| %>
-  <h5><strong><a href="/users/<%= e.user.id %>"><%= e.user.email%>さん</a></strong></h5>
-<% end %>
+        <hr>
+        <% if @messages.present? %>
+          <% @messages.each do |m| %>
+          <div class="chat-box">
+            <div class="chat-face">
+              <%= attachment_image_tag m.user, :profile_image, width:"100px" %>
+            </div>
+            <div class="chat-area">
 
-<hr>
-<% if @messages.present? %>
-  <% @messages.each do |m| %>
-    <strong><%= m.message_content %></strong>
-    <small>by <strong><a href="/users/<%= m.user_id %>"><%= m.user.email %>さん</a></strong></small>
-    <hr>
-  <% end %>
-<% else %>
-  <h3 class="text-center">メッセージはまだありません</h3>
-<% end %>
+              <div class="chat-hukidashi">
+              <strong><%= m.message_content %></strong>
+              <small>by <strong><a href="/users/<%= m.user_id %>"><%= m.user.name %>さん</a></strong></small>
+              <hr>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        <% else %>
+          <h3 class="text-center">メッセージはまだありません</h3>
+        <% end %>
 
-<%= form_for(@message, url: publics_messages_path, action: :create) do |f| %>
-  <%= f.text_field :message_content, :placeholder => "メッセージを入力して下さい" , :size => 70 %>
-  <%= f.hidden_field :room_id, :value => @room.id %>
-  <br>
-  <%= f.submit "投稿する" %>
-<% end %>
+        <%= form_for(@message, url: publics_messages_path, action: :create) do |f| %>
+          <%= f.text_field :message_content, :placeholder => "メッセージを入力して下さい" , :size => 70 %>
+          <%= f.hidden_field :room_id, :value => @room.id %>
+          <br>
+          <%= f.submit "投稿する" %>
+        <% end %>
 
-<%= link_to "ユーザー一覧に戻る", publics_users_path %>
+        <%= link_to "ユーザー一覧に戻る", publics_users_path %>
+    </div>
+  </div>
+</div>

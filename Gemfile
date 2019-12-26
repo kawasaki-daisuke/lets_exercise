@@ -79,3 +79,7 @@ gem 'cancancan'
 gem 'pry-byebug'
 
 gem 'bxslider-rails'
+
+gem 'font-awesome-sass', '~> 5.4.1'
+
+gem 'rails-i18n'

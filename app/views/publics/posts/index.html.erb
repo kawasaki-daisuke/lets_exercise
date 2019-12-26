@@ -1,15 +1,37 @@
 <%= render :partial => 'layouts/header' %>
-
 <h1>投稿一覧</h1>
-<% @posts.each do |f| %>
-	<p>投稿日時</p>
-	<%= link_to  publics_user_post_path(user_id:@user.id, id:f.id) do %>
-	<span><%= f.created_at.strftime("%Y-%m-%d %H:%M") %></span>
-	<% end %>
-	<p>画像</p>
-	<span><%= attachment_image_tag f, :post_image, width:"100px" %></span>
-	<p>トレーニング内容</p>
-	<span><%= f.post_content %></span>
-<% end %>
+<table class="table table-striped">
+	
+	<thead>
+		<tr>
+			<th></th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<% @posts.each do |post| %>
+				<td>
+					<div class = "post">
+					<div class = "post_time">
+					<p>投稿日時</p>
+					<%= link_to  publics_user_post_path(user_id:post.user.id, id:post.id) do %>
+					<span><%= post.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+					<% end %>
+					</div>
+					<div class = "post_image">
+					<p>画像</p>
+					<span><%= attachment_image_tag post, :post_image, width:"100px" %></span>
+					</div>
+					<div class = "post_training">
+					<p>トレーニング内容</p>
+					<span><%= post.post_content %></span>
+					</div>
+				</td>
+			<% end %>
+			<%= paginate @posts %>
+		</tr>
+	</tbody>
+</table>
 
 

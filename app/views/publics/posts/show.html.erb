@@ -55,6 +55,8 @@
 		    <% end %>
 		</ol>
 
+	<%= link_to '削除', publics_user_post_path, method: :delete, data: {confirm: "削除しますか？"} %>
+     
 		
 	</div>
 <% else %>
@@ -92,7 +94,7 @@
 	        <h2 class="comment-count"><%= @post.comments.count %>件コメント</h2>
 	    </div>
 		<ol>
-		    <% @post.comments.each do |post_comment| %>
+		    <% @comments.each do |post_comment| %>
 		        <li class="comment">
 		            <div class="comment-body bb">
 		                <div class="comment-avatar">
@@ -110,15 +112,17 @@
 		            </div>
 		        </li>
 		    <% end %>
+		    <%= paginate @comments %>
 		</ol>
 
 		<%= form_for [@post,@comment] , url: publics_user_post_comments_path(post_id:@post.id), method: :post do |f| %>
 	    	<div class="row">
-	        	<div class="col-sm-12">
-	            <%= f.text_area :comment_content, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+	        	<div class="col-sm-5">
+	            <%= f.text_area :comment_content, rows:'2', class: "form-control",placeholder: "コメントをここに" %>
+	            <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
 	        	</div>
+	    	
 	    	</div>
-	    	<%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
 		<% end %>
 	</div>
 <% end %>

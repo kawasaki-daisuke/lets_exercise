@@ -2,12 +2,11 @@ class Publics::UsersController < ApplicationController
 	before_action :authenticate_user!, :only => [:show]
 
 	def index
-		@users = User.all
+		@users = User.search(params[:search]).page(params[:page])
+		@users = @users.page(params[:page]).per(10)
+
 	end
 
-	def search
-		@users = User.search(params[:search])
-	end
 
 	def show
 		@user = User.find(params[:id])
@@ -53,8 +52,17 @@ class Publics::UsersController < ApplicationController
 		render "followed"
 	end
 
+	def destroy
+		@user = User.find(params[:id])
+	    if  @user.destroy
+	    	redirect_to top_path
+	    else
+        	render :edit
+        end
+	end
+
 	private
 	def user_params
-		params.require(:user).permit(:profile_image, :name, :gender, :tall, :weight, :email, :encrypted_password)
+		params.require(:user).permit(:profile_image, :name, :tall, :weight, :gym, :email, :encrypted_password)
 	end
 end

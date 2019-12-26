@@ -1,3 +1,46 @@
 // Place all the styles related to the publics::users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.image {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50px; /*追加*/
+}
+
+table, tbody, thead, tr, th, td {
+    display: block;
+}
+ 
+.user {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+}
+
+.image2 {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 100px; /*追加*/
+}
+
+.user-box{
+  float:left;
+  width:480px;
+  margin-top: 50px ;
+
+}
+.col{
+  margin-top :30px ;
+}
+
+.col-md-5 {
+  
+  padding:30px 0;
+}

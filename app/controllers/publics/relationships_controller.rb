@@ -3,7 +3,10 @@ class Publics::RelationshipsController < ApplicationController
 
 
   def follow
+    @user = User.find(params[:id])
     current_user.follow(params[:id])
+    # ここから
+    @user.create_notification_follow!(current_user)
     redirect_to publics_users_path
   end
 

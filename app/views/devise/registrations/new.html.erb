@@ -8,13 +8,7 @@
     <%= f.text_field :name %>
   </div>
 
-  <div class="field">
-    <%= f.label :性別 %>
-    <%= f.radio_button :gender, :male %>
-    <%= f.label :gender, "男性" %>
-    <%= f.radio_button :gender, :female %>
-    <%= f.label :gender, "女性" %>
-  </div>
+  
 
   <div class="field">
     <%= f.label :プロフィール画像 %>
@@ -29,6 +23,11 @@
   <div class="field">
     <%= f.label :体重 %><br />
     <%= f.text_field :weight %>
+  </div>
+
+  <div class="field">
+    <%= f.label :通っているジム %><br />
+    <%= f.text_field :gym %>
   </div>
 
   <div class="field">

@@ -15,14 +15,32 @@ class Publics::PostsController < ApplicationController
 	def index
 		@user = User.find(params[:user_id])
 		@posts = Post.where(user_id:@user.id)
-		@comments = Comment.all
+		@posts = @posts.page(params[:page]).per(10)
+		
 	end
 
 	def show
-		@user = User.find(params[:user_id])
 		@post = Post.find(params[:id])
+		@user = User.find(params[:user_id])
 		@comment = Comment.new
+		@comments = @post.comments
+		@comments = @comments.page(params[:page]).per(10)
 	end
+
+	def index2
+		@posts = Post.search(params[:search])
+		@posts = @posts.page(params[:page]).per(10)
+	end
+
+	def destroy
+		@user = User.find(params[:user_id])
+	    @post = Post.find(params[:id])
+	    if  @post.destroy
+	    	redirect_to publics_user_posts_path(@user)
+	    else
+        	render :index
+        end
+  	end
 
 	private
 		def post_params

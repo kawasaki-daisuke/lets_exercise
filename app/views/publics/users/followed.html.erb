@@ -1,3 +1,4 @@
+<%= render :partial => 'layouts/header' %>
 <%= "#{@user.name}さんのフォロワー" %>
 	<% @user.follower_user.each do |user| %>
 		<%= attachment_image_tag user, :profile_image, width:"100px" %>

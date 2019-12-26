@@ -1,25 +1,50 @@
 <%= render :partial => 'layouts/header' %>
-<h2>ユーザー一覧画面</h2>
-<ul class="bxslider">
-	<% @users.each do |f| %>
-		<li>
-			<p>画像</p>
-			<span><%= attachment_image_tag f, :profile_image, width:"100px" %></span>
-			<p>名前</p>
-			<%= link_to publics_user_path(f.id) do %>
-			<span><%= f.name %></span>
-			<% end %>
 
-			<p>
-		    <%= "id: #{f.id} email: #{f.email}" %>
-		    <% unless @user == current_user %>
-			    <% if current_user.following?(f) %>
-			        <%= link_to 'フォロー外す', unfollow_path(f.id), method: :post %>
-			    <% else %>
-			        <%= link_to 'フォローする', follow_path(f.id), method: :post %>
-			    <% end %>
+<div class="container">
+<h2>ユーザー一覧</h2>
+<div class="row">
+    <div class="col col-lg-2">
+    </div>
+     <div class="col col-lg-8">
+	<table class="table table-striped">
+	<span><%= form_tag publics_users_path ,:method => 'get' do %>
+          <%= text_field_tag :search, params[:search] ,placeholder:"ジム名で検索" %>
+          <%= submit_tag " 検索　", :gym => nil %>
+          <% end %></span>
+	<thead>
+		<tr>
+			
+		</tr>
+	</thead>
+	
+		<tbody>
+			<tr>
+				<% @users.each do |f| %>
+					<td>
+						<div class = "image">
+						<span><%= attachment_image_tag f, :profile_image, width:"100px" %></span>
+						</div>
+					
+						<div class = "name"><%= link_to publics_user_path(f.id) do %>
+						<span><%= f.name %></span>
+						<% end %>
+						</div>
+					
+
+						<div class = "following">
+						<p><%= "フォロー: #{f.follower.count}" %></p>
+						</div>
+						<div class = "followed">
+						<p><%= "フォロワー: #{f.followed.count}" %></p>
+						</div>
+					
+						<div class = "gym">
+							<p><%= f.gym %></p>
+						</div>
+					</td>
+			</tr>
 			<% end %>
-		    </p>
-		</li>
-	<% end %>
-</ul>
+		</tbody>
+
+</table>
+<%= paginate @users %>
