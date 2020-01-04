@@ -9,16 +9,23 @@ header {
 	width: 100%;
 	position: relative;
 	font-family: 'Caveat', cursive;
+	
+
+    
 }
 
 .nav-position{
 	position: relative;
 	top: 20px;
 	left: 90px;
+	
 }
 
 .nav-title {
-	color: #333333;
+	color: #DA8E00;
+    background: -webkit-linear-gradient(-45deg, #F7DE05, #DA8E00, #EDAC06, #F7DE05, #ECB802, #DAAF08, #B67B03, #DA8E00, #EDAC06, #F7DE05, #ECB802, #EDAC06);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 	text-decoration: none !important;
 	position: relative;
 	display: inline-block;
@@ -29,7 +36,7 @@ header {
 }
 
 .nav-title:hover {
-	color: #333333;
+	
 }
 
 
@@ -37,15 +44,19 @@ header {
 
 .nav-right ul {
 	float: right;
+	
 }
 
 .nav-right span {
 	float: right;
 	position: relative;
 	padding-right: 45px;
+	
+
 }
 
 li {
   list-style: none;
+  color:black;
 }
 

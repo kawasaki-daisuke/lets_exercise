@@ -9,7 +9,7 @@ class Publics::FavoritesController < ApplicationController
 	end
 
 	def destroy
-        	post = Post.find_by(params[:post_id])
+        	post = Post.find(params[:post_id])
                 @user = post.user
                 favorite = current_user.favorites.find_by(post_id: post.id)
                 favorite.destroy

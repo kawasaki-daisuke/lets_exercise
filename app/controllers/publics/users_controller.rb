@@ -43,12 +43,15 @@ class Publics::UsersController < ApplicationController
 	def follower
 		@user = User.find(params[:id])
 		@users = @user.following_user
+		@users = @users.page(params[:page]).per(10)
 		render "follower"
+
 	end
 
 	def followed
 		@user = User.find(params[:id])
 		@users = @user.follower_user
+		@users = @users.page(params[:page]).per(10)
 		render "followed"
 	end
 

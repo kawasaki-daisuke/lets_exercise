@@ -1,21 +1,76 @@
+<div class="header">
+  <div class="header-top">
+    <p class="headline">
+     Let's Exercise
+    </p>
+  </div>
+  <div class="header-bottom">
+      <div class ="box">
+      <%= link_to "会員登録", new_user_registration_path, class:"btn-gradient-radius" %>
+      <%= link_to "ログイン", new_user_session_path, class:"btn-gradient-radius" %>
+      </div>
+  </div>
+</div>
+<div class="main-visual"></div>
 
-<div class="main-container">
-	<div class= "title">
-		<h1>Let's Exercise</h1>
-	</div>
-	<%= link_to "会員登録", new_user_registration_path %>
-	<%= link_to "ログイン", new_user_session_path %>
-	</div>
 
 <style type="text/css" media="screen">
-	.main-container {
-		background-image: url("<%= asset_path("top") %>");
-		height: 800px;
-		background-size:cover;
-	}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-	.title {
-		font-family: 'Caveat', cursive;
-		color :#fff;
-	}
+.header {
+  width: 100%; /* 横幅いっぱい */
+  height: 120px; /* 高さ120px */
+  
+}
+
+.headline {
+    color: #DA8E00;
+    background: -webkit-linear-gradient(-45deg, #F7DE05, #DA8E00, #EDAC06, #F7DE05, #ECB802, #DAAF08, #B67B03, #DA8E00, #EDAC06, #F7DE05, #ECB802, #EDAC06);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  font-family: 'Caveat', cursive;
+  font-size: 50px
+
+}
+
+.header-top {
+  width: 100%; /* 横幅 */
+  height: 70px; /* 高さ */
+ 
+}
+.header-bottom {
+  width: 100%; /* 横幅 */
+  height: 50px; /* 高さ */
+ 
+}
+
+.box {
+  margin: 0 0 0 auto;
+  width:300px;
+}
+
+.btn-gradient-radius {
+  display: inline-block;
+  padding: 7px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  color: #FFF;
+  background-image: linear-gradient(45deg, #FFC107 0%, #ff8b5f 100%);
+  transition: .4s;
+}
+
+.btn-gradient-radius:hover {
+  background-image: linear-gradient(45deg, #FFC107 0%, #f76a35 100%);
+}
+
+
+.main-visual {
+  width: 100%; /* 横幅 */
+  height: 100%; /* 高さ */
+  background-image: url("<%= asset_path("top2.jpeg") %>");
+}
 </style>
