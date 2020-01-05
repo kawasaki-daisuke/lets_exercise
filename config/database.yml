@@ -22,7 +22,7 @@ test:
 
 production:
   <<: *default
-  database: lets_exercise
+  database: sampledb
   adapter: mysql2
   encoding: utf8mb4
   charset: utf8mb4
