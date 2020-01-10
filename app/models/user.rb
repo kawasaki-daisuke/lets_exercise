@@ -22,18 +22,18 @@ class User < ApplicationRecord
 	  follower.create!(followed_id: user_id)
 	end
 
-	# ユーザーのフォローを外す
+	
 	def unfollow(user_id)
 	  follower.find_by(followed_id: user_id).destroy
 	end
 
-	# フォローしていればtrueを返す
+	
 	def following?(user)
 	  following_user.include?(user)
 	end
 
 	has_many :messages, dependent: :destroy
-  	has_many :entries, dependent: :destroy
+  has_many :entries, dependent: :destroy
 
   	def self.search(search)
   		if search
