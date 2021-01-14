@@ -73,7 +73,7 @@ gem 'paranoia'
 
 gem 'kaminari'
 
-gem 'rails_admin', '~> 2.0.0.beta'
+gem 'rails_admin', '~> 2.0.2'
 gem 'cancancan'
 
 gem 'pry-byebug'
